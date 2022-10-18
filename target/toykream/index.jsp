@@ -17,10 +17,10 @@
 <div class="container" style="text-align: center">
     <div class="row">
         <div class="col">
-            테스트
+           <a href="/user/signup">회원가입</a>
         </div>
         <div class="col">
-            columnㅇㅇㅇㅇㅇ
+            <a href="/user/signup">로그인하기</a>
         </div>
         <div class="col">
             column
