@@ -3,12 +3,19 @@ package com.toykream.dto.user;
 import lombok.Data;
 import org.apache.ibatis.type.Alias;
 
+import java.util.Date;
+
 @Data
 @Alias("user")
 public class UserDTO {
-    private int user_id;
-    private String user_name;
-    private String user_email;
-    private int user_point;
-    private int user_shoe_size;
+    private int userId;
+    private String userEmail;
+    private String userPassword;
+    private String userName;
+    private int userNum;
+    private String userProfile;
+    private String userAddress;
+    private int userPoint;
+    private Date userRegdate;
+    private int userSize;
 }
