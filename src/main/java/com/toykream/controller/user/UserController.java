@@ -1,17 +1,20 @@
 package com.toykream.controller.user;
 
+import com.toykream.controller.Session;
 import com.toykream.dto.user.UserDTO;
 import com.toykream.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 
+
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+
 import org.springframework.web.bind.annotation.*;
 
+
+import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.Map;
 
 
 @Controller
@@ -20,36 +23,52 @@ public class UserController {
 
     @Autowired
     UserService userService;
+    @Autowired
+    Session session;
 
     //회원가입 페이지 이동 및 회원가입 처리
     @GetMapping("/signup")
     public String signup(){
-        return "regist-user";
+        return "user-regist/regist-user";
     }
     @PostMapping("/signup")
     public String registMember(UserDTO user){
         System.out.println(user);
         user.setUserPassword(convertToSha(user.getUserPassword()));
         userService.createMember(user);
-        return "login-user";
+        return "user-regist/login-user";
     }
 
     @GetMapping("/signin")
     public String logIn(){
-        return "login-user";
+        return "user-regist/login-user";
     }
 
 //    회원 로그인 처리
+
     @PostMapping("/signin")
-    public String logIn(UserDTO logIn){
+    public String logIn(HttpServletRequest request, UserDTO logIn){
         logIn.setUserPassword(convertToSha(logIn.getUserPassword()));
         UserDTO validate =  userService.selectOne(logIn);
+        System.out.println("validate = "+validate);
         if(validate != null){
-            return "index";
+            String userRole = validate.getUserRole();
+            System.out.println("userRole = "+userRole);
+            switch (userRole){
+                case "admin" :
+                    session.settingSession(request,validate.getUserRole(),validate.getUserName(),validate.getUserPoint(),validate.getUserNum(),validate.getUserSize());
+                    return "/admin/admin-index";
+                case "md" :
+                    session.settingSession(request,validate.getUserRole(),validate.getUserName(),validate.getUserPoint(),validate.getUserNum(),validate.getUserSize());
+                    return "/md/md-index";
+                case "user" :
+                    session.settingSession(request,validate.getUserRole(),validate.getUserName(),validate.getUserPoint(),validate.getUserNum(),validate.getUserSize());
+                    return "index";
+                default: return "index";
+            }
         }
-        return "login-user";
+        return "user-regist/login-user";
     }
-
 
 
 
@@ -72,6 +91,16 @@ public class UserController {
         }
         return converted;
 
+    }
+
+    //로그인 후 로그인 데이터 세션 생성
+
+
+    //로그아웃
+    @GetMapping("/logOut")
+    public String deleteSession(){
+        session.deleteSession();
+        return "index";
     }
 
 

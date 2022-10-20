@@ -5,7 +5,7 @@ import org.apache.ibatis.type.Alias;
 
 @Data
 @Alias("category")
-public class categoryDTO {
+public class CategoryDTO {
     private int categoryId;
     private String categoryName;
 

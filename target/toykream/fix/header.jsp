@@ -1,11 +1,6 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: juhyun
-  Date: 2022/10/18
-  Time: 1:13 PM
-  To change this template use File | Settings | File Templates.
---%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <html>
 <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
@@ -28,7 +23,10 @@
                     <a class="nav-link" href="#">Link</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link disabled">Disabled</a>
+               <c:set var="name" value="${userName}" scope="session"/>
+                <c:if test="${not empty userName}">
+                    <a class="nav-link disabled"><p>어서오세요 ${userName} 님</p></a>
+                </c:if>
                 </li>
             </ul>
             <form class="d-flex" role="search">

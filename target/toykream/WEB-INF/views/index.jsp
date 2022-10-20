@@ -22,7 +22,7 @@
            <a href="/user/signup">회원가입</a>
         </div>
         <div class="col">
-            <a href="/user/signup">로그인하기</a>
+            <a href="/user/signin">로그인하기</a>
         </div>
         <div class="col">
             column

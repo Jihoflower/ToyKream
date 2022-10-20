@@ -18,4 +18,5 @@ public class UserDTO {
     private int userPoint;
     private Date userRegdate;
     private int userSize;
+    private String userRole;
 }

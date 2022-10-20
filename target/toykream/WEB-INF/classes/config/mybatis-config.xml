@@ -8,6 +8,11 @@
     </settings>
     <typeAliases>
         <typeAlias type="com.toykream.dto.user.UserDTO" alias="user"/>
+        <typeAlias type="com.toykream.dto.product.ProductDTO" alias="product"/>
+        <typeAlias type="com.toykream.dto.color.ColorDTO" alias="color"/>
+        <typeAlias type="com.toykream.dto.size.SizeDTO" alias="size"/>
+        <typeAlias type="com.toykream.dto.category.CategoryDTO" alias="category"/>
+        <typeAlias type="com.toykream.dto.brand.BrandDTO" alias="brand"/>
     </typeAliases>
 
 
